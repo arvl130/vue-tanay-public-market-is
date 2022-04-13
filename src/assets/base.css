@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-bg-gradient-cyan-to-blue {
+  background-image: linear-gradient(
+    to bottom,
+    #86d7ff,
+    #73d7f9,
+    #62d7f1,
+    #53d7e7,
+    #4ad6db,
+    #39cbd4,
+    #25bfcc,
+    #00b4c5,
+    #009bbd,
+    #0081b2,
+    #0067a1,
+    #194d8b
+  );
+}
