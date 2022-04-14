@@ -236,7 +236,7 @@ const isUpdateButtonDisabled = computed(() => {
           class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded shadow hover:shadow-md transition duration-200"
           @click="showDeleteModal = true"
         >
-          Delete Tenant
+          Delete Receipt
         </button>
 
         <button
