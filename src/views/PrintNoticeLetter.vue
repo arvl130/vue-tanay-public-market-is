@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, nextTick, onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import getUser from "../composables/getUser";
 import getLetter from "../composables/manage-letters/getLetter";
@@ -12,8 +12,15 @@ const letterInfo = ref(null);
 
 const dateIssued = ref("loading...");
 
+const loadingMessage = ref("Please wait...");
+
+const viewShouldShow = ref(false);
 onMounted(async () => {
   letterInfo.value = await getLetter(letter_uid);
+  if (!letterInfo.value) {
+    loadingMessage.value = "";
+  }
+
   const { firstName, lastName } = await getUser(letterInfo.value.tenant_uid);
   if (firstName) tenant.firstName = firstName;
   else tenant.lastName = "No data.";
@@ -21,6 +28,11 @@ onMounted(async () => {
   else tenant.lastName = "No data.";
 
   dateIssued.value = unixSecondsToWordDate(letterInfo.value.timestamp.seconds);
+
+  viewShouldShow.value = true;
+  await nextTick();
+
+  window.print();
 });
 
 const tenant = reactive({
@@ -36,7 +48,7 @@ const grandTotalArrears = computed(() => {
 </script>
 
 <template>
-  <div v-if="letterInfo">
+  <div v-if="viewShouldShow">
     <!-- Letter -->
     <div class="mb-16 max-w-4xl mx-auto">
       <div class="max-w-3xl px-12 mx-auto">
@@ -124,5 +136,5 @@ const grandTotalArrears = computed(() => {
       </div>
     </div>
   </div>
-  <div v-else>No notice letter found.</div>
+  <div v-else>{{ loadingMessage }}</div>
 </template>
