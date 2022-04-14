@@ -22,6 +22,7 @@ const onSave = async () => {
     const uid = auth.currentUser.uid;
 
     await updateProfilePicturePath(uid, fullPath);
+    originalProfilePictureFullPath.value = fullPath;
     profilePictureURL.value = await getDownloadURLfromImagePath(fullPath);
   }
   isEditable.value = false;
