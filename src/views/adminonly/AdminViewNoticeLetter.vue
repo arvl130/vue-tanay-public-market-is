@@ -10,6 +10,7 @@ import getUser from "../../composables/getUser";
 import unixSecondsToWordDate from "../../composables/utils/unixSecondsToWordDate";
 import deleteLetter from "../../composables/notice-letter/deleteLetter";
 import TrashIcon from "../../assets/icons/TrashIcon.vue";
+import PrintIcon from "../../assets/icons/PrintIcon.vue";
 
 const route = useRoute();
 const letter_uid = route.params.id;
@@ -76,15 +77,30 @@ const onDelete = async () => {
         <span>Back</span>
       </router-link>
 
-      <button
-        type="button"
-        class="flex gap-2 bg-gray-200 p-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
-        @click="onDelete()"
-      >
-        <!-- Trash Icon -->
-        <TrashIcon />
-        Delete
-      </button>
+      <div class="grid sm:flex gap-4">
+        <button
+          type="button"
+          class="flex gap-2 bg-gray-200 p-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
+          @click="onDelete()"
+        >
+          <!-- Trash Icon -->
+          <TrashIcon />
+          Delete
+        </button>
+
+        <router-link
+          class="flex gap-2 bg-gray-200 p-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
+          :to="{
+            name: 'Admin Print Notice Letter',
+            params: { id: letter_uid },
+          }"
+          target="_blank"
+        >
+          <!-- Print Icon -->
+          <PrintIcon />
+          Print
+        </router-link>
+      </div>
     </div>
   </PageHeader>
 
@@ -163,12 +179,12 @@ const onDelete = async () => {
               default in payment of monthly rental by the SECOND PARTY for three
               (3) consecutive months, the FIRST PARTY shall have the right to
               close down the stall and business, upon prior notice to, of the
-              SECOND PASTY. The stall maybe allowed to commercially operate
+              SECOND PARTY. The stall maybe allowed to commercially operate
               again only after payment of all ones by the SECOND PARTY.
             </p>
             <p class="text-justify mb-8">
               We respectfully request you to settle the amount immediately to
-              avoid further concerns in your rental fee. Very truly yours,
+              avoid further concerns in your rental fee.
             </p>
             <p class="mb-8">Very truly yours,</p>
             <p>JEFFREY M. PINO, DPA EnP</p>
