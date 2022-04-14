@@ -4,6 +4,7 @@ import getAdmin from "../../composables/getAdmin";
 import getTenant from "../../composables/getTenant";
 import unixSecondsToWordDate from "../../composables/utils/unixSecondsToWordDate";
 import SimpleDialogModal from "../modals/SimpleDialogModal.vue";
+import PrintIcon from "../../assets/icons/PrintIcon.vue";
 
 const props = defineProps({
   ticket: Object,
@@ -68,18 +69,21 @@ onMounted(async () => {
       <div><span class="font-bold">Amount paid:</span> {{ amountPaid }}</div>
     </template>
     <template #controls>
+      <router-link
+        :to="{ name: 'Print Ticket', params: { id: ticket.uid } }"
+        class="rounded font-medium bg-gray-200 hover:bg-gray-300 p-2 flex gap-2"
+        target="_blank"
+      >
+        <PrintIcon />
+        <span>Print</span>
+      </router-link>
+
       <button
-        class="rounded bg-gray-200 hover:bg-gray-300 px-2 py-1"
+        class="rounded bg-gray-200 hover:bg-gray-300 px-3 py-2"
         @click="emit('close')"
       >
         Close
       </button>
-      <router-link
-        :to="{ name: 'Print Ticket', params: { id: ticket.uid } }"
-        class="rounded font-medium bg-gray-200 hover:bg-gray-300 px-2 py-1"
-      >
-        Print
-      </router-link>
     </template>
   </SimpleDialogModal>
 </template>
