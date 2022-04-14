@@ -1,3 +1,4 @@
+.firebaserc
 .vscode/*
 dist/*
 garbagebin/*
