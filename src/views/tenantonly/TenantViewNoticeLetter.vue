@@ -41,7 +41,7 @@ const letter_uid = route.params.id;
       </router-link>
 
       <router-link
-        class="flex gap-2 bg-gray-200 p-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
+        class="flex gap-2 bg-gray-200 py-2 px-3 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
         :to="{
           name: 'Tenant Print Notice Letter',
           params: { id: letter_uid },

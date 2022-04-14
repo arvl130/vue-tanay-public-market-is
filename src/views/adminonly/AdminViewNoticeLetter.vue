@@ -60,7 +60,7 @@ const onDelete = async () => {
         </button>
 
         <router-link
-          class="flex gap-2 bg-gray-200 p-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
+          class="flex gap-2 bg-gray-200 py-2 px-3 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
           :to="{
             name: 'Admin Print Notice Letter',
             params: { id: letter_uid },
