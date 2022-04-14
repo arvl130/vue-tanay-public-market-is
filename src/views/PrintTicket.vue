@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+import { nextTick, onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import getAdmin from "../composables/getAdmin";
 import getReceipt from "../composables/getReceipt";
@@ -31,6 +31,8 @@ const admin = reactive({
 });
 
 const storesPaid = ref([]);
+
+const ticketShouldShow = ref(false);
 
 onMounted(async () => {
   const {
@@ -71,12 +73,16 @@ onMounted(async () => {
 
   const { stores } = await getReceipt(receipt_uid);
   storesPaid.value = stores;
+
+  ticketShouldShow.value = true;
+  await nextTick();
+  window.print();
 });
 </script>
 
 <template>
   <!-- Receipt -->
-  <main class="max-w-md mx-auto">
+  <main class="max-w-md mx-auto" v-if="ticketShouldShow">
     <!-- Header -->
     <div class="flex justify-between px-6 mb-2 h-24 items-center">
       <img
@@ -192,4 +198,10 @@ onMounted(async () => {
       </div>
     </div>
   </main>
+  <div
+    v-else
+    class="flex justify-center items-center min-h-screen text-4xl text-neutral-800 font-bold"
+  >
+    Please wait...
+  </div>
 </template>

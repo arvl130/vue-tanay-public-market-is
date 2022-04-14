@@ -12,14 +12,9 @@ const letterInfo = ref(null);
 
 const dateIssued = ref("loading...");
 
-const loadingMessage = ref("Please wait...");
-
 const viewShouldShow = ref(false);
 onMounted(async () => {
   letterInfo.value = await getLetter(letter_uid);
-  if (!letterInfo.value) {
-    loadingMessage.value = "";
-  }
 
   const { firstName, lastName } = await getUser(letterInfo.value.tenant_uid);
   if (firstName) tenant.firstName = firstName;
@@ -136,5 +131,10 @@ const grandTotalArrears = computed(() => {
       </div>
     </div>
   </div>
-  <div v-else>{{ loadingMessage }}</div>
+  <div
+    v-else
+    class="flex justify-center items-center min-h-screen text-4xl text-neutral-800 font-bold"
+  >
+    Please wait...
+  </div>
 </template>
