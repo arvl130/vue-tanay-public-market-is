@@ -74,6 +74,12 @@ onMounted(async () => {
       >
         Close
       </button>
+      <router-link
+        :to="{ name: 'Print Ticket', params: { id: ticket.uid } }"
+        class="rounded font-medium bg-gray-200 hover:bg-gray-300 px-2 py-1"
+      >
+        Print
+      </router-link>
     </template>
   </SimpleDialogModal>
 </template>
