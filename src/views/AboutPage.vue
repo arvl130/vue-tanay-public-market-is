@@ -26,7 +26,7 @@ import NavBar from "../components/NavBar/NavBar.vue";
     </template>
   </NavBar>
 
-  <main class="max-w-6xl mx-auto px-6 pb-12">
+  <main class="max-w-6xl mx-auto px-6 pb-12 text-neutral-800">
     <img
       src="../assets/img/banner.jpg"
       class="object-cover mb-8 rounded-b-2xl"
