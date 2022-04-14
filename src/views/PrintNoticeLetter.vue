@@ -43,7 +43,7 @@ const grandTotalArrears = computed(() => {
         <!-- letterhead -->
         <div class="flex mb-4">
           <img
-            src="../../assets/img/logo.png"
+            src="../assets/img/logo.png"
             alt=""
             class="h-28 absolute ml-12 md:inline-block"
           />
