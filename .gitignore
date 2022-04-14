@@ -1,4 +1,5 @@
 .vscode/*
+dist/*
 garbagebin/*
 node_modules/*
 package-lock.json
