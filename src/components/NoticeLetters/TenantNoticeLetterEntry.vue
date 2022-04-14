@@ -16,7 +16,7 @@ const prettyNameAdmin = ref("loading...");
 onMounted(async () => {
   const { firstName, lastName } = await getUser(props.letter.admin_uid);
   if (firstName || lastName) prettyNameAdmin.value = `${firstName} ${lastName}`;
-  else prettyNameAdmin.value = `No data.`;
+  else prettyNameAdmin.value = "";
 });
 
 const prettyNameTenant = ref("loading...");
@@ -24,7 +24,7 @@ onMounted(async () => {
   const { firstName, lastName } = await getUser(props.letter.tenant_uid);
   if (firstName || lastName)
     prettyNameTenant.value = `${firstName} ${lastName}`;
-  else prettyNameTenant.value = `No data.`;
+  else prettyNameTenant.value = "";
 });
 </script>
 
@@ -35,8 +35,14 @@ onMounted(async () => {
   >
     <div class="truncate text-ellipsis">{{ letter.uid }}</div>
     <div>{{ formattedDate }}</div>
-    <div>{{ prettyNameAdmin }}</div>
-    <div>{{ prettyNameTenant }}</div>
+    <div>
+      <span v-if="prettyNameAdmin">{{ prettyNameAdmin }}</span>
+      <span v-else class="italic">no data</span>
+    </div>
+    <div>
+      <span v-if="prettyNameTenant">{{ prettyNameTenant }}</span>
+      <span v-else class="italic">no data</span>
+    </div>
     <div class="flex justify-center text-center">
       <router-link
         class="bg-white text-cyan-500 hover:bg-cyan-500 hover:text-white px-3 py-1 rounded-2xl border border-teal-800"
@@ -54,7 +60,10 @@ onMounted(async () => {
     <label class="font-bold">Date sent:</label>
     <div class="mb-3 text-2xl">{{ formattedDate }}</div>
     <label class="font-bold">Sent by:</label>
-    <div class="mb-3 text-2xl">{{ prettyNameAdmin }}</div>
+    <div class="mb-3 text-2xl">
+      <span v-if="prettyNameAdmin">{{ prettyNameAdmin }}</span>
+      <span v-else class="italic">no data</span>
+    </div>
     <label class="font-bold">Tenant name:</label>
     <div class="mb-3 text-2xl">{{ prettyNameTenant }}</div>
     <div class="flex justify-center text-center">
