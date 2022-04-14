@@ -182,7 +182,7 @@ const isUpdateButtonDisabled = computed(() => {
     </div>
   </PageHeader>
 
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <form class="grid">
       <div>
         <label class="font-bold text-lg">Store Holder:</label>
@@ -230,7 +230,7 @@ const isUpdateButtonDisabled = computed(() => {
       />
       <label class="font-bold text-lg">Receipt Photo:</label>
       <input type="file" class="text-sm mb-3" ref="receiptFile" />
-      <div class="flex justify-between mb-6">
+      <div class="flex justify-between">
         <button
           type="button"
           class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded shadow hover:shadow-md transition duration-200"

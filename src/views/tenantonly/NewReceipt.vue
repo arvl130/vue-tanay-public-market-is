@@ -138,7 +138,7 @@ const isSubmitButtonDisabled = computed(() => {
     </div>
   </PageHeader>
 
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <form class="grid">
       <div>
         <label class="font-bold text-lg">Store Holder:</label>
@@ -192,7 +192,7 @@ const isSubmitButtonDisabled = computed(() => {
         ref="receiptFile"
         @change="checkForChangedFiles"
       />
-      <div class="text-right mb-6">
+      <div class="text-right">
         <button
           type="button"
           class="bg-gray-200 hover:bg-gray-300 px-3 py-2 rounded shadow hover:shadow-md transition duration-200"
