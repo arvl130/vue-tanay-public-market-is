@@ -28,7 +28,6 @@ const onCancel = () => {
 
 const onSave = async () => {
   const uid = auth.currentUser.uid;
-  console.log(phoneNumber.value);
   await updatePhoneNumber(uid, phoneNumber.value);
   originalPhoneNumber.value = phoneNumber.value;
   isEditable.value = false;
