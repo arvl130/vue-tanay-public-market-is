@@ -93,7 +93,7 @@ const isCreateButtonDisabled = computed(() => {
     </div>
   </PageHeader>
 
-  <main class="max-w-6xl mx-auto px-6 pt-6 pb-12">
+  <main class="max-w-6xl mx-auto p-6">
     <!-- form -->
     <form class="grid">
       <label class="font-bold text-lg">
@@ -152,7 +152,7 @@ const isCreateButtonDisabled = computed(() => {
         </select>
         <span v-else class="italic">No stores available</span>
       </div>
-      <div class="text-right mb-6">
+      <div class="text-right">
         <button
           @click="onCreateTenant() /* createNewTenant({ ...newTenant })*/"
           type="button"

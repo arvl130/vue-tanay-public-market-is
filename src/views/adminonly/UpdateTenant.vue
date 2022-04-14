@@ -147,7 +147,7 @@ const isErrorModalVisible = ref(false);
     </div>
   </PageHeader>
 
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <!-- form -->
     <form class="grid">
       <label class="font-bold text-lg">First name</label>
