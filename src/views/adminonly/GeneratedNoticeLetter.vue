@@ -179,12 +179,12 @@ const onSave = async () => {
               default in payment of monthly rental by the SECOND PARTY for three
               (3) consecutive months, the FIRST PARTY shall have the right to
               close down the stall and business, upon prior notice to, of the
-              SECOND PASTY. The stall maybe allowed to commercially operate
+              SECOND PARTY. The stall maybe allowed to commercially operate
               again only after payment of all ones by the SECOND PARTY.
             </p>
             <p class="text-justify mb-8">
               We respectfully request you to settle the amount immediately to
-              avoid further concerns in your rental fee. Very truly yours,
+              avoid further concerns in your rental fee.
             </p>
             <p class="mb-8">Very truly yours,</p>
             <p>JEFFREY M. PINO, DPA EnP</p>
