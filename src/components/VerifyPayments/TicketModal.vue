@@ -71,7 +71,7 @@ onMounted(async () => {
     <template #controls>
       <router-link
         :to="{ name: 'Print Ticket', params: { id: ticket.uid } }"
-        class="rounded font-medium bg-gray-200 hover:bg-gray-300 p-2 flex gap-2"
+        class="rounded font-medium bg-gray-200 hover:bg-gray-300 px-3 py-2 flex gap-2"
         target="_blank"
       >
         <PrintIcon />
