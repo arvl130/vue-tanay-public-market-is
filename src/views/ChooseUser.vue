@@ -22,7 +22,7 @@ import NavBar from "../components/NavBar/NavBar.vue";
         Home
       </router-link>
       <router-link :to="{ name: 'About' }" class="hover:underline">
-        About
+        About Us
       </router-link>
     </template>
   </NavBar>
