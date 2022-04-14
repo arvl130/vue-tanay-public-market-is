@@ -14,6 +14,8 @@ const profilePictureFile = ref();
 const originalProfilePictureFullPath = ref(null);
 
 const onSave = async () => {
+  if (isSaveButtonDisabled.value) return;
+
   if (profilePictureFile.value.files.length > 0) {
     const { fullPath } = await uploadProfilePicture(
       profilePictureFile.value.files[0]
