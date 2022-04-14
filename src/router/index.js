@@ -26,6 +26,7 @@ import AdminNoticeLetters from "../views/adminonly/AdminNoticeLetters.vue";
 import NewNoticeLetter from "../views/adminonly/NewNoticeLetter.vue";
 import GeneratedNoticeLetter from "../views/adminonly/GeneratedNoticeLetter.vue";
 import AdminViewNoticeLetter from "../views/adminonly/AdminViewNoticeLetter.vue";
+import PrintNoticeLetter from "../views/PrintNoticeLetter.vue";
 
 /* Tenant pages */
 import TenantLogin from "../views/TenantLogin.vue";
@@ -228,6 +229,12 @@ const router = createRouter({
       beforeEnter: [redirectToHomeIfNotAdminUser],
     },
     {
+      name: "Admin Print Notice Letter",
+      path: "/admin/notice-letters/:id/print",
+      component: PrintNoticeLetter,
+      beforeEnter: [redirectToHomeIfNotAdminUser],
+    },
+    {
       name: "Admin View Notice Letter",
       path: "/admin/notice-letters/:id/view",
       component: AdminViewNoticeLetter,
@@ -325,6 +332,12 @@ const router = createRouter({
       name: "Tenant View Notice Letter",
       path: "/tenant/notice-letters/:id/view",
       component: TenantViewNoticeLetter,
+      beforeEnter: [redirectToHomeIfNotTenantUser],
+    },
+    {
+      name: "Tenant Print Notice Letter",
+      path: "/tenant/notice-letters/:id/print",
+      component: PrintNoticeLetter,
       beforeEnter: [redirectToHomeIfNotTenantUser],
     },
     {
