@@ -27,6 +27,7 @@ import NewNoticeLetter from "../views/adminonly/NewNoticeLetter.vue";
 import GeneratedNoticeLetter from "../views/adminonly/GeneratedNoticeLetter.vue";
 import AdminViewNoticeLetter from "../views/adminonly/AdminViewNoticeLetter.vue";
 import PrintNoticeLetter from "../views/PrintNoticeLetter.vue";
+import PrintTicket from "../views/PrintTicket.vue";
 
 /* Tenant pages */
 import TenantLogin from "../views/TenantLogin.vue";
@@ -77,6 +78,12 @@ const redirectToHomeIfNotAdminUser = async () => {
 
 const redirectToHomeIfNotTenantUser = async () => {
   if (!(await userIsTenant())) {
+    return { name: "Home" };
+  }
+};
+
+const redirectToHomeIfNotAdminAndNotTenantUser = async () => {
+  if (!((await userIsTenant()) || (await userIsAdmin()))) {
     return { name: "Home" };
   }
 };
@@ -229,15 +236,15 @@ const router = createRouter({
       beforeEnter: [redirectToHomeIfNotAdminUser],
     },
     {
-      name: "Admin Print Notice Letter",
-      path: "/admin/notice-letters/:id/print",
-      component: PrintNoticeLetter,
-      beforeEnter: [redirectToHomeIfNotAdminUser],
-    },
-    {
       name: "Admin View Notice Letter",
       path: "/admin/notice-letters/:id/view",
       component: AdminViewNoticeLetter,
+      beforeEnter: [redirectToHomeIfNotAdminUser],
+    },
+    {
+      name: "Admin Print Notice Letter",
+      path: "/admin/notice-letters/:id/print",
+      component: PrintNoticeLetter,
       beforeEnter: [redirectToHomeIfNotAdminUser],
     },
     {
@@ -339,6 +346,12 @@ const router = createRouter({
       path: "/tenant/notice-letters/:id/print",
       component: PrintNoticeLetter,
       beforeEnter: [redirectToHomeIfNotTenantUser],
+    },
+    {
+      name: "Print Ticket",
+      path: "/tickets/:id/print",
+      component: PrintTicket,
+      beforeEnter: [redirectToHomeIfNotAdminAndNotTenantUser],
     },
     {
       name: "Terms & Conditions",
