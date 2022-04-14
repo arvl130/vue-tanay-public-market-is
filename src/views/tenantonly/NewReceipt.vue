@@ -87,7 +87,12 @@ const maxAmountValue = computed(() => {
 
 const filesAreChosen = ref(false);
 const checkForChangedFiles = (e) => {
-  if (e.target.files && e.target.files.length > 0) {
+  if (
+    e.target.files &&
+    e.target.files.length === 1 &&
+    // Do not accept files equal or larger than 2 MiB
+    e.target.files[0].size < 2 * 1024 * 1024
+  ) {
     filesAreChosen.value = true;
   } else {
     filesAreChosen.value = false;
@@ -184,7 +189,11 @@ const isSubmitButtonDisabled = computed(() => {
         class="p-1 border border-gray-400 rounded max-w-xs mb-3"
         type="text"
       />
-      <label class="font-bold text-lg">Receipt Photo:</label>
+      <label class="text-lg">
+        <span class="font-bold">Receipt Photo: </span>
+        <span class="text-sm italic mb-3">Maximum file size: 2MiB</span>
+      </label>
+
       <input
         type="file"
         accept="image/*"

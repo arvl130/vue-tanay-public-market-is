@@ -1,6 +1,6 @@
 <script setup>
 import { getAuth } from "firebase/auth";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import getTenant from "../../composables/getTenant";
 import deleteRemoteFile from "../../composables/tenants/deleteRemoteFile";
 import getDownloadURLfromImagePath from "../../composables/tenants/getDownloadURLfromImagePath";
@@ -47,6 +47,32 @@ const onRemove = async () => {
   await updateProfilePicturePath(uid, "");
   profilePictureURL.value = "";
 };
+
+const filesAreChosen = ref(true);
+const filesAreCorrectSize = ref(true);
+const onPhotoInputChanged = (e) => {
+  if (e.target.files.length > 0) filesAreChosen.value = true;
+  else filesAreChosen.value = false;
+
+  if (e.target.files && e.target.files.length > 1) {
+    filesAreCorrectSize.value = false;
+  } else if (
+    e.target.files &&
+    e.target.files.length === 1 &&
+    // Do not accept files equal or larger than 1 MiB
+    e.target.files[0].size >= 1 * 1024 * 1024
+  ) {
+    filesAreCorrectSize.value = false;
+  } else {
+    filesAreCorrectSize.value = true;
+  }
+};
+
+const isSaveButtonDisabled = computed(() => {
+  if (!filesAreChosen.value) return true;
+  if (!filesAreCorrectSize.value) return true;
+  return false;
+});
 </script>
 
 <template>
@@ -57,7 +83,14 @@ const onRemove = async () => {
     <div class="font-bold">Photo</div>
     <div>
       <div v-if="isEditable">
-        <input type="file" alt="" class="text-sm" ref="profilePictureFile" />
+        <input
+          type="file"
+          accept="image/*"
+          class="text-sm"
+          ref="profilePictureFile"
+          @change="onPhotoInputChanged"
+        />
+        <div class="italic text-sm">Maximum file size: 1MiB</div>
       </div>
       <div v-else>
         <div class="flex max-w-xs max-h-48" v-if="profilePictureURL">
@@ -68,7 +101,17 @@ const onRemove = async () => {
     </div>
     <div>
       <div v-if="isEditable" class="flex gap-2">
-        <button type="button" class="" @click="onSave()">Save</button>
+        <button
+          type="button"
+          :class="{
+            'bg-slate-300': isSaveButtonDisabled,
+            'text-slate-500': isSaveButtonDisabled,
+            'pointer-events-none': isSaveButtonDisabled,
+          }"
+          @click="onSave()"
+        >
+          Save
+        </button>
         <button type="button" class="" @click="isEditable = false">
           Cancel
         </button>

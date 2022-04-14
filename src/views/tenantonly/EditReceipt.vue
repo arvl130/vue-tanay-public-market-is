@@ -143,11 +143,28 @@ const maxAmountValue = computed(() => {
   return amountDue.value - totalPayment.value;
 });
 
+const filesAreCorrectSize = ref(true);
+const onReceiptInputChanged = (e) => {
+  if (e.target.files && e.target.files.length > 1) {
+    filesAreCorrectSize.value = false;
+  } else if (
+    e.target.files &&
+    e.target.files.length === 1 &&
+    // Do not accept files equal or larger than 2 MiB
+    e.target.files[0].size >= 2 * 1024 * 1024
+  ) {
+    filesAreCorrectSize.value = false;
+  } else {
+    filesAreCorrectSize.value = true;
+  }
+};
+
 const isUpdateButtonDisabled = computed(() => {
   if (currReceipt.amount > maxAmountValue.value) return true;
   if (currReceipt.amount <= 0) return true;
   if (currReceipt.stores.length === 0) return true;
   if (!receiptFile.value) return true;
+  if (!filesAreCorrectSize.value) return true;
   return false;
 });
 </script>
@@ -228,8 +245,17 @@ const isUpdateButtonDisabled = computed(() => {
         class="p-1 border border-gray-400 rounded max-w-xs mb-3"
         type="text"
       />
-      <label class="font-bold text-lg">Receipt Photo:</label>
-      <input type="file" class="text-sm mb-3" ref="receiptFile" />
+      <label class="text-lg">
+        <span class="font-bold">Receipt Photo: </span>
+        <span class="text-sm italic mb-3">Maximum file size: 2MiB</span>
+      </label>
+      <input
+        type="file"
+        accept="image/*"
+        class="text-sm mb-3"
+        ref="receiptFile"
+        @change="onReceiptInputChanged"
+      />
       <div class="flex justify-between">
         <button
           type="button"
