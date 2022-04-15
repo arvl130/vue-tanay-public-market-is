@@ -112,7 +112,7 @@ const onSave = async () => {
           <!-- letterhead -->
           <div class="flex mb-4">
             <img
-              src="../../assets/img/logo.png"
+              src="../../assets/img/logo.webp"
               alt=""
               class="h-28 absolute ml-16 hidden md:inline-block"
             />
