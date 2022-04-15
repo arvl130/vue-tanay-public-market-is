@@ -51,10 +51,10 @@ const grandTotalArrears = computed(() => {
 </script>
 
 <template>
-  <div class="max-w-6xl mx-auto px-6 pt-6">
+  <div class="max-w-6xl mx-auto sm:px-6 sm:pt-6">
     <!-- Letter -->
-    <div class="mb-16 max-w-4xl mx-auto shadow-2xl">
-      <div class="max-w-3xl py-20 px-12 mx-auto">
+    <div class="mb-6 sm:mb-16 max-w-4xl mx-auto shadow-2xl">
+      <div class="max-w-3xl py-10 sm:py-20 px-6 sm:px-12 mx-auto">
         <!-- letterhead -->
         <div class="flex mb-4">
           <img
