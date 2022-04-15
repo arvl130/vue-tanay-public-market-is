@@ -36,7 +36,7 @@ import NavBar from "../components/NavBar/NavBar.vue";
     <div class="hidden lg:block mt-3 text-center text-xl">Which are you?</div>
     <!-- <div class="lg:hidden px-8 pt-8">
       <img
-        src="../assets/img/public-market.jpg"
+        src="../assets/img/public-market.webp"
         class="block md:max-w-lg mx-auto rounded-lg"
         alt=""
       />
@@ -62,7 +62,7 @@ import NavBar from "../components/NavBar/NavBar.vue";
       </router-link>
       <div class="hidden lg:block p-8">
         <img
-          src="../assets/img/public-market.jpg"
+          src="../assets/img/public-market.webp"
           class="block max-w-md rounded-lg"
           alt=""
         />

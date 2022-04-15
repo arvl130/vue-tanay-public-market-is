@@ -40,7 +40,7 @@
         <!-- Hero image -->
         <div>
           <img
-            src="../assets/img/public-market.jpg"
+            src="../assets/img/public-market.webp"
             class="shadow-md rounded-r-xl hidden sm:inline-block w-[65vw] h-[30rem] object-cover"
             alt=""
           />
