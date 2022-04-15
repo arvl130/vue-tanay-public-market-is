@@ -62,7 +62,7 @@ const noticeLetters = listenForNoticeLettersReceivedByTenant(tenant_uid);
 
   <!-- Dashboard buttons -->
   <main
-    class="max-w-6xl mx-auto px-6 pt-6 md:pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+    class="max-w-6xl mx-auto px-6 py-6 md:pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
   >
     <!-- Payment Updates button -->
     <router-link
