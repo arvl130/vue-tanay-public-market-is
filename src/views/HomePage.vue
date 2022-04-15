@@ -8,7 +8,7 @@
     <!-- Navbar -->
     <nav>
       <div
-        class="max-w-6xl mx-auto flex pt-2 justify-between items-center px-3 pr-6"
+        class="max-w-6xl mx-auto flex pt-2 justify-between items-center px-3"
       >
         <!-- logo -->
         <div class="flex items-center space-x-3">
@@ -34,45 +34,50 @@
     </nav>
 
     <!-- Home page -->
-    <main class="max-w-7xl pr-6 grid items-center">
+    <main class="grid items-center">
       <!-- Homepage top -->
-      <div class="md:flex justify-between items-center space-x-6">
+      <div class="grid grid-cols-[auto_1fr] justify-between items-center">
         <!-- Hero image -->
-        <img
-          src="../assets/img/public-market.jpg"
-          class="mx-auto w-3/5 md:mx-0 md:w-3/6 rounded-r-xl mb-6 object-cover shadow-md"
-          style="width: 64vw; height: 30rem"
-          alt=""
-        />
+        <div>
+          <img
+            src="../assets/img/public-market.jpg"
+            class="shadow-md rounded-r-xl hidden sm:inline-block w-[65vw] h-[30rem] object-cover"
+            alt=""
+          />
+        </div>
 
         <!-- Hero message Desktop -->
-        <div class="hidden md:block text-center md:text-right max-w-xs">
-          <div class="flex justify-end">
-            <img src="../assets/img/rentie-logo-v5.png" class="w-64 mb-4" />
-          </div>
-          <div class="mb-3 font-bold text-4xl text-white">Pay. Collect.</div>
-          <div class="font-bold text-4xl text-white mb-6">Record.</div>
+        <div class="">
+          <div class="max-w-xs mx-auto text-center sm:text-right px-6">
+            <div class="flex justify-end">
+              <img src="../assets/img/rentie-logo-v5.png" class="w-64 mb-4" />
+            </div>
+            <div class="mb-3 font-bold text-4xl text-white">Pay. Collect.</div>
+            <div class="font-bold text-4xl text-white mb-6">Record.</div>
 
-          <div
-            class="mb-6 bg-cyan-600 text-white px-4 py-2 inline-block drop-shadow-lg"
-          >
-            A website for Tanay Public Market that accepts and records proof of
-            rental payment of its tenants.
-          </div>
-
-          <div class="flex md:justify-center lg:justify-end">
-            <router-link
-              :to="{ name: 'Choose User' }"
-              class="px-8 py-2 bg-white text-cyan-500 text-xl font-bold rounded-3xl hover:bg-cyan-500 hover:text-white transition duration-200 drop-shadow-lg"
+            <div
+              class="mb-6 bg-cyan-600 text-white px-4 py-2 inline-block drop-shadow-lg"
             >
-              Sign in
-            </router-link>
+              A website for Tanay Public Market that accepts and records proof
+              of rental payment of its tenants.
+            </div>
+
+            <div class="flex justify-center sm:justify-end">
+              <router-link
+                :to="{ name: 'Choose User' }"
+                class="px-8 py-2 bg-white text-cyan-500 text-xl font-bold rounded-3xl hover:bg-cyan-500 hover:text-white transition duration-200 drop-shadow-lg"
+              >
+                Sign in
+              </router-link>
+            </div>
           </div>
         </div>
 
         <!-- Hero message Mobile -->
-        <div class="md:hidden text-center mb-6 flex flex-col">
-          <div class="font-extrabold text-6xl">rentIE</div>
+        <!-- <div class="md:hidden text-center mb-6 flex flex-col">
+          <div class="flex justify-center">
+            <img src="../assets/img/rentie-logo-v5.png" class="w-64 mb-4" />
+          </div>
           <div class="font-bold text-4xl text-white ml-4 mb-6">
             Pay. Collect. Record.
           </div>
@@ -84,7 +89,7 @@
               Sign in
             </router-link>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
   </div>

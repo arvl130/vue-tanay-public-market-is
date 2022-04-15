@@ -34,13 +34,13 @@ import NavBar from "../components/NavBar/NavBar.vue";
       Tanay Public Market
     </h2>
     <div class="hidden lg:block mt-3 text-center text-xl">Which are you?</div>
-    <div class="lg:hidden px-8 pt-8">
+    <!-- <div class="lg:hidden px-8 pt-8">
       <img
         src="../assets/img/public-market.jpg"
         class="block md:max-w-lg mx-auto rounded-lg"
         alt=""
       />
-    </div>
+    </div> -->
 
     <div class="mt-3 text-center text-2xl font-bold lg:mt-0 lg:hidden">
       Are you an?
