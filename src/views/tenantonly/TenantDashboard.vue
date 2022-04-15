@@ -73,7 +73,7 @@ const noticeLetters = listenForNoticeLettersReceivedByTenant(tenant_uid);
       <img
         src="../../assets/img/payment-updates.png"
         alt=""
-        class="h-full mx-auto object-contain"
+        class="h-full min-h-0 mx-auto object-contain"
       />
       <div class="">Payment Updates</div>
     </router-link>
@@ -86,7 +86,7 @@ const noticeLetters = listenForNoticeLettersReceivedByTenant(tenant_uid);
       <img
         src="../../assets/img/history.jpg"
         alt=""
-        class="h-full mx-auto object-contain"
+        class="h-full min-h-0 mx-auto object-contain"
       />
       <div class="flex justify-center items-end">History</div>
     </router-link>
@@ -99,7 +99,7 @@ const noticeLetters = listenForNoticeLettersReceivedByTenant(tenant_uid);
       <img
         src="../../assets/img/notice-letter.png"
         alt=""
-        class="h-full mx-auto object-contain"
+        class="h-full min-h-0 mx-auto object-contain"
       />
       <div class="">Notice Letters</div>
     </router-link>

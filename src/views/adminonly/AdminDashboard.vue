@@ -35,7 +35,7 @@ import AdminSecondaryButtons from "../../components/NavBar/AdminSecondaryButtons
       <img
         src="../../assets/img/verify-payments.png"
         alt=""
-        class="h-full mx-auto object-contain"
+        class="h-full min-h-0 mx-auto object-contain"
       />
       <div class="flex justify-center items-end">Payment Updates</div>
     </router-link>
@@ -48,7 +48,7 @@ import AdminSecondaryButtons from "../../components/NavBar/AdminSecondaryButtons
       <img
         src="../../assets/img/manage-tenants.png"
         alt=""
-        class="h-full mx-auto object-contain"
+        class="h-full min-h-0 mx-auto object-contain"
       />
       <div class="">Manage Tenants</div>
     </router-link>
@@ -61,7 +61,7 @@ import AdminSecondaryButtons from "../../components/NavBar/AdminSecondaryButtons
       <img
         src="../../assets/img/notice-letter.png"
         alt=""
-        class="h-full mx-auto object-contain"
+        class="h-full min-h-0 mx-auto object-contain"
       />
       <div class="">Notice Letters</div>
     </router-link>
