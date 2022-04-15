@@ -12,7 +12,7 @@
       >
         <!-- logo -->
         <div class="flex items-center space-x-3">
-          <img src="../assets/img/logo.png" class="h-16 w-16" alt="" />
+          <img src="../assets/img/logo.webp" class="h-16 w-16" alt="" />
           <span
             class="hidden sm:inline font-bold text-2xl uppercase text-gray-800"
             >Tanay Public Market</span

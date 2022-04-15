@@ -18,7 +18,7 @@ onMounted(() => {
         <!-- Logo -->
         <div class="flex items-center space-x-3 mr-4 my-2 h-16">
           <img
-            src="../../assets/img/logo.png"
+            src="../../assets/img/logo.webp"
             class="w-16 hidden sm:block"
             alt=""
           />
