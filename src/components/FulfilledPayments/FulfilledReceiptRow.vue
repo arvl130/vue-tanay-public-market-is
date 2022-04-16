@@ -2,6 +2,8 @@
 import ImageModal from "../modals/ImageModal.vue";
 import { onMounted, ref } from "vue";
 import getDownloadURLfromImagePath from "../../composables/tenants/getDownloadURLfromImagePath";
+import listenForTicketsByReceiptUID from "../../composables/verify-payments/listenForTicketsByReceiptUID";
+import TicketModal from "../VerifyPayments/TicketModal.vue";
 
 const props = defineProps({
   receipt: Object,
@@ -15,6 +17,10 @@ onMounted(async () => {
 });
 
 const isModalVisible = ref(false);
+
+/* Monitor if we have tickets */
+const tickets = listenForTicketsByReceiptUID(props.receipt.uid);
+const isTicketModalVisible = ref(false);
 </script>
 
 <template>
@@ -33,6 +39,17 @@ const isModalVisible = ref(false);
       >
         View Image
       </button>
+
+      <!-- Button for Ticket -->
+      <div v-if="tickets.length > 0">
+        <button
+          class="bg-white text-cyan-500 hover:bg-cyan-500 hover:text-white px-3 py-1 rounded-2xl border border-teal-800"
+          @click="isTicketModalVisible = true"
+          v-if="receipt.status === 'confirmed'"
+        >
+          View Ticket
+        </button>
+      </div>
     </div>
   </div>
   <!-- Mobile: card -->
@@ -53,6 +70,17 @@ const isModalVisible = ref(false);
       >
         View Image
       </button>
+
+      <!-- Button for Ticket -->
+      <div v-if="tickets.length > 0">
+        <button
+          class="bg-white text-cyan-500 hover:bg-cyan-500 hover:text-white px-3 py-1 rounded-2xl border border-teal-800"
+          @click="isTicketModalVisible = true"
+          v-if="receipt.status === 'confirmed'"
+        >
+          View Ticket
+        </button>
+      </div>
     </div>
   </div>
 
@@ -61,5 +89,11 @@ const isModalVisible = ref(false);
     :receipt_uid="receipt.uid"
     v-show="isModalVisible"
     @close="isModalVisible = false"
+  />
+
+  <TicketModal
+    v-if="isTicketModalVisible"
+    :ticket="tickets[0]"
+    @close="isTicketModalVisible = false"
   />
 </template>
