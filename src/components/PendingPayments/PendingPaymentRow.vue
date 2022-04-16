@@ -31,7 +31,7 @@ onMounted(() => {
         }"
         class="bg-white text-cyan-500 hover:bg-cyan-500 hover:text-white px-3 py-1 rounded-2xl border border-teal-800 inline-block"
       >
-        View Receipts
+        View Uploads
       </router-link>
     </div>
   </div>
@@ -53,7 +53,7 @@ onMounted(() => {
         }"
         class="bg-white text-cyan-500 hover:bg-cyan-500 hover:text-white px-3 py-1 rounded-2xl border border-teal-800 inline-block"
       >
-        View Receipts
+        View Uploads
       </router-link>
     </div>
   </div>
