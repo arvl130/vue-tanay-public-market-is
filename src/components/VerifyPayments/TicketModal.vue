@@ -41,7 +41,7 @@ onMounted(async () => {
   }
 
   dateIssued.value = unixSecondsToWordDate(props.ticket.date_issued.seconds);
-  amountPaid.value = `₱${props.ticket.amount}`;
+  amountPaid.value = `₱${props.ticket.amount.toFixed(2)}`;
 });
 </script>
 
@@ -64,9 +64,9 @@ onMounted(async () => {
         <span v-else class="italic">N/A</span>
       </div>
       <!-- Date issued -->
-      <div><span class="font-bold">Date issued:</span> {{ dateIssued }}</div>
+      <div><span class="font-bold">Date Issued:</span> {{ dateIssued }}</div>
       <!-- Amount paid -->
-      <div><span class="font-bold">Amount paid:</span> {{ amountPaid }}</div>
+      <div><span class="font-bold">Amount Paid:</span> {{ amountPaid }}</div>
     </template>
     <template #controls>
       <router-link

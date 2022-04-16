@@ -164,7 +164,7 @@ onMounted(async () => {
         <div class="border-l-2 border-black">
           <div v-for="(store, index) in storesPaid" :key="store">
             <div class="pl-2" v-if="index === storesPaid.length - 1">
-              ₱{{ ticket.amount }}
+              ₱{{ ticket.amount.toFixed(2) }}
             </div>
             <div class="border-b-2 border-black" v-else>
               <br />
@@ -178,7 +178,9 @@ onMounted(async () => {
       style="grid-template-columns: 5fr 3fr"
     >
       <div class="mr-2 text-right">Total:</div>
-      <div class="border-l-2 border-black pl-2">₱{{ ticket.amount }}</div>
+      <div class="border-l-2 border-black pl-2">
+        ₱{{ ticket.amount.toFixed(2) }}
+      </div>
     </div>
 
     <!-- Bottom -->
