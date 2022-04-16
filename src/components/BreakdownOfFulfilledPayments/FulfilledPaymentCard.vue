@@ -62,26 +62,24 @@ onMounted(async () => {
     >
       <!-- Store num - amount -->
       <div>Store {{ receipt.stores.join(", ") }}</div>
-      <div class="font-bold">{{ receipt.amount }}</div>
+      <div class="font-bold">₱{{ receipt.amount.toFixed(2) }}</div>
     </div>
 
     <!-- Total Payment (month, date, year) -->
     <div class="flex justify-between max-w-xs border-t-2 border-gray-600 pt-2">
       <div>Total Payment ({{ formattedDate }}):</div>
-      <div class="font-bold">{{ totalPayment }}</div>
+      <div class="font-bold">₱{{ totalPayment.toFixed(2) }}</div>
     </div>
 
     <!-- Total Balance (month, year) -->
     <div class="flex justify-between max-w-xs border-b-2 border-gray-600 pb-2">
       <div>Total Balance ({{ monthYear }}):</div>
-      <div class="font-bold">{{ totalBalance }}</div>
+      <div class="font-bold">₱{{ totalBalance.toFixed(2) }}</div>
     </div>
     <!-- Remaining Balance -->
     <div class="flex justify-between max-w-xs">
       <div>Remaining Balance:</div>
-      <div class="font-bold">
-        {{ remainingBalance }}
-      </div>
+      <div class="font-bold">₱{{ remainingBalance.toFixed(2) }}</div>
     </div>
   </div>
 </template>
