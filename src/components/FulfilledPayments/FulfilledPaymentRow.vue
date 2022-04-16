@@ -22,8 +22,8 @@ onMounted(() => {
   >
     <div class="truncate text-ellipsis">{{ fulfilledPayment.uid }}</div>
     <div>{{ formatted_date }}</div>
-    <div>{{ fulfilledPayment.stores.join(", ") }}</div>
-    <div>{{ fulfilledPayment.amount }}</div>
+    <div>#{{ fulfilledPayment.stores.join(", #") }}</div>
+    <div>₱{{ fulfilledPayment.amount.toFixed(2) }}</div>
     <div>
       <router-link
         :to="{
@@ -47,10 +47,10 @@ onMounted(() => {
     <div class="mb-3 text-2xl">{{ formatted_date }}</div>
 
     <label class="font-bold">Store Number:</label>
-    <div class="mb-3 text-2xl">{{ fulfilledPayment.stores.join(", ") }}</div>
+    <div class="mb-3 text-2xl">#{{ fulfilledPayment.stores.join(", #") }}</div>
 
     <label class="font-bold">Amount:</label>
-    <div class="mb-3 text-2xl">{{ fulfilledPayment.amount }}</div>
+    <div class="mb-3 text-2xl">₱{{ fulfilledPayment.amount.toFixed(2) }}</div>
     <div class="flex justify-center gap-8">
       <router-link
         :to="{
