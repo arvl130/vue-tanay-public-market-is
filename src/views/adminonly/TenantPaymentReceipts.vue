@@ -57,8 +57,8 @@ onMounted(async () => {
       <!-- Header -->
       <div class="hidden sm:grid grid-cols-4 bg-gray-200 p-2 gap-2">
         <div class="text-center font-semibold">Receipt UID</div>
-        <div class="text-center font-semibold">Amount</div>
         <div class="text-center font-semibold">Stores</div>
+        <div class="text-center font-semibold">Amount</div>
         <div class="text-center font-semibold">Actions</div>
       </div>
       <TenantReceiptRow
