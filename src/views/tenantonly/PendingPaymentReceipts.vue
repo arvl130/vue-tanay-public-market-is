@@ -63,7 +63,7 @@ const currentBalance = computed(() => {
       <router-link
         :to="{ name: 'New Receipt', params: { id: payment_uid } }"
         class="flex gap-2 bg-gray-200 px-4 py-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
-        v-if="currentBalance > 0"
+        v-if="currentBalance > 0 && currentBalance.toFixed(2) !== '0.00'"
       >
         <!-- Add Icon -->
         <AddButton />

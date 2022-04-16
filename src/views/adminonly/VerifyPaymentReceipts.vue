@@ -75,7 +75,7 @@ const onMarkFulfilled = async () => {
 
       <button
         class="flex gap-2 bg-gray-200 p-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
-        v-if="currentBalance <= 0"
+        v-if="currentBalance.toFixed(2) === '0.00'"
         @click="showConfirmMarkFulfilled = true"
       >
         <!-- Document Icon -->
