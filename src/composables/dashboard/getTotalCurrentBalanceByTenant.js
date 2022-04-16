@@ -11,6 +11,10 @@ export default async (tenant_uid) => {
     return payment.amount + runningBalance;
   }, 0);
 
+  if (pendingPaymentUids.length === 0) return 0;
+  // If there are no pending payments, then the
+  // current balance is zero.
+
   const q = query(
     collection(db, "tpmis_receipts"),
     where("payment_uid", "in", pendingPaymentUids)
