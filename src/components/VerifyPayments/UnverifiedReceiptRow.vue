@@ -58,7 +58,7 @@ const isTicketModalVisible = ref(false);
     <!-- Receipt UID -->
     <div class="text-center">{{ receipt.uid }}</div>
     <!-- Receipt Amount -->
-    <div class="text-center">{{ receipt.amount }}</div>
+    <div class="text-center">₱{{ receipt.amount.toFixed(2) }}</div>
     <!-- Image -->
     <div class="text-center">
       <button
