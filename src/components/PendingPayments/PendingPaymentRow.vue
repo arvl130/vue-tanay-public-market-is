@@ -18,9 +18,8 @@ onMounted(() => {
 <template>
   <!-- Desktop: row -->
   <div
-    class="hidden sm:grid grid-cols-5 bg-gray-200 p-2 gap-2 mt-2 items-center text-center"
+    class="hidden sm:grid grid-cols-4 bg-gray-200 p-2 gap-2 mt-2 items-center text-center"
   >
-    <div class="truncate text-ellipsis">{{ pendingPayment.uid }}</div>
     <div>{{ formatted_date }}</div>
     <div>{{ pendingPayment.stores.join(", ") }}</div>
     <div>₱{{ pendingPayment.amount.toFixed(2) }}</div>
@@ -38,11 +37,6 @@ onMounted(() => {
   </div>
   <!-- Mobile: card -->
   <div class="sm:hidden bg-gray-200 p-2">
-    <label class="font-bold">Payment UID:</label>
-    <div class="mb-3 text-2xl truncate text-ellipsis">
-      {{ pendingPayment.uid }}
-    </div>
-
     <label class="font-bold">Due Date:</label>
     <div class="mb-3 text-2xl">{{ formatted_date }}</div>
 

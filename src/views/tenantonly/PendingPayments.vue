@@ -48,8 +48,7 @@ onMounted(async () => {
     <!-- Table for Pending Payments of a Tenant -->
     <div class="grid gap-4 sm:block">
       <!-- Header (payment_uid, due_date, store_num, amount, actions -> [view receipts]) -->
-      <div class="hidden sm:grid grid-cols-5 bg-gray-200 p-2 gap-2">
-        <div class="text-center font-semibold">UID</div>
+      <div class="hidden sm:grid grid-cols-4 bg-gray-200 p-2 gap-2">
         <div class="text-center font-semibold">Due Date</div>
         <div class="text-center font-semibold">Store Number</div>
         <div class="text-center font-semibold">Amount Paid</div>
