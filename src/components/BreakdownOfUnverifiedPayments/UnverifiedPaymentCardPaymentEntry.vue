@@ -56,27 +56,27 @@ const remainingBalance = computed(() => {
         class="flex justify-between max-w-xs"
       >
         <div>Store #{{ receipt.stores.join(", #") }}</div>
-        <div class="font-bold">{{ receipt.amount }}</div>
+        <div class="font-bold">₱{{ receipt.amount.toFixed(2) }}</div>
       </div>
       <!-- Payment total ([date]): [total paid] -->
       <div
         class="flex justify-between max-w-xs border-t-2 border-gray-600 pt-2"
       >
         <div class="">Payment total ({{ payment.formattedDate }}):</div>
-        <div class="font-bold">{{ totalPaid }}</div>
+        <div class="font-bold">₱{{ totalPaid.toFixed(2) }}</div>
       </div>
     </div>
 
     <!-- Balance ([month-year]): [total due] -->
     <div class="flex justify-between max-w-xs border-b-2 border-gray-600 pb-2">
       <div>Balance ({{ payment.formattedDate }}):</div>
-      <div class="font-bold">{{ payment.amount }}</div>
+      <div class="font-bold">₱{{ payment.amount.toFixed(2) }}</div>
     </div>
 
     <!-- Remaining balance:     [total_due - total_paid] -->
     <div class="flex justify-between max-w-xs">
       <div>Remaining Balance:</div>
-      <div class="font-bold">{{ remainingBalance }}</div>
+      <div class="font-bold">₱{{ remainingBalance.toFixed(2) }}</div>
     </div>
   </div>
 </template>
