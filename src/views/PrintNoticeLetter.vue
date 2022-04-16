@@ -99,7 +99,7 @@ const grandTotalArrears = computed(() => {
             </span>
             amounting to
             <span class="underline">
-              {{ `₱${letterInfo.arrears}` }}
+              {{ `₱${letterInfo.arrears.toFixed(2)}` }}
             </span>
             arrears (with
             <span class="underline">
@@ -107,7 +107,7 @@ const grandTotalArrears = computed(() => {
             </span>
             penalty) with the grand total amount of
             <span class="underline">
-              {{ `₱${grandTotalArrears}` }}
+              {{ `₱${grandTotalArrears.toFixed(2)}` }}
             </span>
             at Tanay Public Market is now due.
           </p>
