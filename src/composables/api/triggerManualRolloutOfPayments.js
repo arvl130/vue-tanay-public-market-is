@@ -3,7 +3,7 @@ import getToken from "../auth/getToken";
 export default async () => {
   const idToken = await getToken();
   const response = await fetch(
-    `http://localhost:5000/settings/firstrun/create-payments`,
+    `https://node-tanay-public-market-is.herokuapp.com/settings/firstrun/create-payments`,
     {
       method: "GET",
       headers: {
