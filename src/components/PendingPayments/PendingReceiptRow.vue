@@ -40,6 +40,9 @@ const isTicketModalVisible = ref(false);
       <div v-if="receipt.status === 'submitted'">
         Waiting for admin to confirm your payment
       </div>
+      <div v-else-if="receipt.status === 'for resubmission'">
+        For Resubmission
+      </div>
       <div v-else>
         {{ receipt.status }}
       </div>
@@ -101,6 +104,9 @@ const isTicketModalVisible = ref(false);
     <div class="mb-3 text-lg">
       <div v-if="receipt.status === 'submitted'">
         Waiting for admin to confirm your payment
+      </div>
+      <div v-else-if="receipt.status === 'for resubmission'">
+        For Resubmission
       </div>
       <div v-else>
         {{ receipt.status }}
