@@ -30,9 +30,7 @@ const isTicketModalVisible = ref(false);
     <div class="text-center truncate text-ellipsis">
       {{ receipt.uid }}
     </div>
-    <div class="text-center">
-      {{ receipt.stores.join(", ") }}
-    </div>
+    <div class="text-center">#{{ receipt.stores.join(", #") }}</div>
     <div class="text-center">₱{{ receipt.amount.toFixed(2) }}</div>
     <div class="flex justify-center gap-8">
       <button
@@ -63,7 +61,7 @@ const isTicketModalVisible = ref(false);
     <div class="mb-3 text-2xl truncate text-ellipsis">{{ receipt.uid }}</div>
 
     <label class="font-bold">Stores:</label>
-    <div class="mb-3 text-2xl">{{ receipt.stores.join(", ") }}</div>
+    <div class="mb-3 text-2xl">#{{ receipt.stores.join(", #") }}</div>
 
     <label class="font-bold">Amount</label>
     <div class="mb-3 text-2xl">₱{{ receipt.amount.toFixed(2) }}</div>
