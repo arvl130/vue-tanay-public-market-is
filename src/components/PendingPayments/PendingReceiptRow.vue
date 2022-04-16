@@ -36,7 +36,14 @@ const isTicketModalVisible = ref(false);
     <div class="truncate text-ellipsis">{{ receipt.uid }}</div>
     <div>{{ receipt.stores.join(", ") }}</div>
     <div>₱{{ receipt.amount.toFixed(2) }}</div>
-    <div>{{ receipt.status }}</div>
+    <div>
+      <div v-if="receipt.status === 'submitted'">
+        Waiting for admin to confirm your payment
+      </div>
+      <div v-else>
+        {{ receipt.status }}
+      </div>
+    </div>
     <div class="grid justify-center gap-4">
       <button
         type="button"
@@ -89,6 +96,16 @@ const isTicketModalVisible = ref(false);
 
     <label class="font-bold">Amount Paid:</label>
     <div class="mb-3 text-2xl">₱{{ receipt.amount.toFixed(2) }}</div>
+
+    <label class="font-bold">Status:</label>
+    <div class="mb-3 text-lg">
+      <div v-if="receipt.status === 'submitted'">
+        Waiting for admin to confirm your payment
+      </div>
+      <div v-else>
+        {{ receipt.status }}
+      </div>
+    </div>
     <div class="flex justify-center gap-8">
       <button
         type="button"
