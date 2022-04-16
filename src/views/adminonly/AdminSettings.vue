@@ -48,5 +48,15 @@ import AdminSecondaryButtons from "../../components/NavBar/AdminSecondaryButtons
         >Change Password</router-link
       >
     </div>
+    <div
+      class="mt-3 grid px-12 py-3 bg-gray-300"
+      style="grid-template-columns: 2fr 3fr 1fr"
+    >
+      <router-link
+        class="font-bold hover:underline"
+        :to="{ name: 'Testing Page' }"
+        >Testing Page</router-link
+      >
+    </div>
   </main>
 </template>
