@@ -66,7 +66,7 @@ const onSubmit = async () => {
 };
 
 // Max value for amount
-const amountDue = ref(1);
+const amountDue = ref(0);
 
 const receipts = listenForReceiptsWithPaymentUID(payment_uid);
 
@@ -107,6 +107,10 @@ const isSubmitButtonDisabled = computed(() => {
   if (!filesAreChosen.value) return true;
   return false;
 });
+
+const currentBalance = computed(() => {
+  return amountDue.value - totalPayment.value;
+});
 </script>
 
 <template>
@@ -145,6 +149,10 @@ const isSubmitButtonDisabled = computed(() => {
 
   <main class="max-w-6xl mx-auto p-6">
     <form class="grid">
+      <div class="mb-3">
+        <label class="font-bold text-lg">Current balance:</label>
+        <div class="text-3xl ml-1">₱{{ currentBalance.toFixed(2) }}</div>
+      </div>
       <div>
         <label class="font-bold text-lg">Store Holder:</label>
         <span class="text-lg ml-1">

@@ -167,6 +167,12 @@ const isUpdateButtonDisabled = computed(() => {
   if (!filesAreCorrectSize.value) return true;
   return false;
 });
+
+const currentBalance = computed(() => {
+  const result = amountDue.value - totalPayment.value - currReceipt.amount;
+  if (result < 0) return 0;
+  else return result;
+});
 </script>
 
 <template>
@@ -201,6 +207,10 @@ const isUpdateButtonDisabled = computed(() => {
 
   <main class="max-w-6xl mx-auto p-6">
     <form class="grid">
+      <div class="mb-3">
+        <label class="font-bold text-lg">Current balance:</label>
+        <div class="text-3xl ml-1">₱{{ currentBalance.toFixed(2) }}</div>
+      </div>
       <div>
         <label class="font-bold text-lg">Store Holder:</label>
         <span class="text-lg ml-1">
