@@ -12,7 +12,6 @@ import editSubmittedReceipt from "../../composables/tenants/editSubmittedReceipt
 import deleteRemoteFile from "../../composables/tenants/deleteRemoteFile";
 import unixSecondsToCompleteDate from "../../composables/utils/unixSecondsToCompleteDate";
 import getPayment from "../../composables/getPayment";
-import execThenGoto from "../../composables/utils/execThenGoto";
 import deleteReceipt from "../../composables/tenants/deleteReceipt";
 import SimpleDialogModal from "../../components/modals/SimpleDialogModal.vue";
 import listenForReceiptsWithPaymentUID from "../../composables/verify-payments/listenForReceiptsWithPaymentUID";
@@ -96,7 +95,7 @@ const onSubmit = async () => {
   }
 };
 
-const onDeleteProto = async () => {
+const onDelete = async () => {
   // If there is an image uploaded
   if (currReceipt.image_path) {
     // delete it
@@ -104,11 +103,12 @@ const onDeleteProto = async () => {
   }
 
   await deleteReceipt(receipt_uid);
+  document.querySelector("body").classList = [];
+  router.push({
+    name: "Pending Payment Receipts",
+    params: { id: payment_uid },
+  });
 };
-
-const onDelete = execThenGoto(onDeleteProto, "Pending Payment Receipts", {
-  id: payment_uid,
-});
 
 const showDeleteModal = ref(false);
 
