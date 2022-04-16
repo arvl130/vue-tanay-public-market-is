@@ -139,6 +139,13 @@ const totalPayment = computed(() => {
   }, 0);
 });
 
+const totalPaymentFromConfirmedReceipts = computed(() => {
+  return receipts.value.reduce((runningPayment, receipt) => {
+    if (receipt.status === "confirmed") return runningPayment + receipt.amount;
+    else return runningPayment;
+  }, 0);
+});
+
 const maxAmountValue = computed(() => {
   return amountDue.value - totalPayment.value;
 });
@@ -168,8 +175,8 @@ const isUpdateButtonDisabled = computed(() => {
   return false;
 });
 
-const currentBalance = computed(() => {
-  const result = amountDue.value - totalPayment.value - currReceipt.amount;
+const currentBalanceFromConfirmedReceipts = computed(() => {
+  const result = amountDue.value - totalPaymentFromConfirmedReceipts.value;
   if (result < 0) return 0;
   else return result;
 });
@@ -209,7 +216,9 @@ const currentBalance = computed(() => {
     <form class="grid">
       <div class="mb-3">
         <label class="font-bold text-lg">Current balance:</label>
-        <div class="text-3xl ml-1">₱{{ currentBalance.toFixed(2) }}</div>
+        <div class="text-3xl ml-1">
+          ₱{{ currentBalanceFromConfirmedReceipts.toFixed(2) }}
+        </div>
       </div>
       <div>
         <label class="font-bold text-lg">Store Holder:</label>
