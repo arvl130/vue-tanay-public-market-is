@@ -27,8 +27,19 @@ const totalPayment = computed(() => {
   }, 0);
 });
 
+const totalPaymentFromConfirmedReceipts = computed(() => {
+  return receipts.value.reduce((runningPayment, receipt) => {
+    if (receipt.status === "confirmed") return runningPayment + receipt.amount;
+    else return runningPayment;
+  }, 0);
+});
+
 const currentBalance = computed(() => {
   return amountDue.value - totalPayment.value;
+});
+
+const currentBalanceFromConfirmedReceipts = computed(() => {
+  return amountDue.value - totalPaymentFromConfirmedReceipts.value;
 });
 </script>
 
@@ -97,15 +108,15 @@ const currentBalance = computed(() => {
         <label class="font-bold mr-2">Amount due:</label>
         <span>₱{{ amountDue.toFixed(2) }}</span>
       </div>
-      <!-- Total payment -->
+      <!-- Total payment from Confirmed Receipts -->
       <div class="flex justify-between">
         <label class="font-bold mr-2">Total Payment:</label>
-        <span>₱{{ totalPayment.toFixed(2) }}</span>
+        <span>₱{{ totalPaymentFromConfirmedReceipts.toFixed(2) }}</span>
       </div>
-      <!-- Curr balance -->
+      <!-- Curr balance from Confirmed Receipts -->
       <div class="flex justify-between">
         <label class="font-bold mr-2">Current Balance:</label>
-        <span>₱{{ currentBalance.toFixed(2) }}</span>
+        <span>₱{{ currentBalanceFromConfirmedReceipts.toFixed(2) }}</span>
       </div>
     </div>
   </main>
