@@ -51,6 +51,7 @@ import userIsAdmin from "../composables/user-checks/userIsAdmin";
 import userIsTenant from "../composables/user-checks/userIsTenant";
 import userIsLoggedIn from "../composables/user-checks/userIsLoggedIn";
 import { getAuth } from "firebase/auth";
+import TestingPage from "../views/adminonly/TestingPage.vue";
 
 const auth = getAuth();
 
@@ -149,6 +150,12 @@ const router = createRouter({
       name: "Admin Settings",
       path: "/admin/settings",
       component: AdminSettings,
+      beforeEnter: [redirectToHomeIfNotAdminUser],
+    },
+    {
+      name: "Testing Page",
+      path: "/admin/settings/testing",
+      component: TestingPage,
       beforeEnter: [redirectToHomeIfNotAdminUser],
     },
     {
