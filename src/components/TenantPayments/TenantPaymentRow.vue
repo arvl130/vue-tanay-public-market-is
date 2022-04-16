@@ -56,7 +56,10 @@ onMounted(async () => {
     <label class="font-bold">Due date:</label>
     <div class="mb-3 text-2xl">{{ formatted_date }}</div>
     <label class="font-bold">Description:</label>
-    <div class="mb-3 text-2xl">{{ payment.description }}</div>
+    <div class="mb-3 text-2xl" v-if="payment.description">
+      {{ payment.description }}
+    </div>
+    <div class="mb-3 text-2xl italic" v-else>no description</div>
     <label class="font-bold">Actions:</label>
     <div class="flex justify-center mt-3">
       <router-link
