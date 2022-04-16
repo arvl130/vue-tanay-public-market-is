@@ -53,7 +53,7 @@ onMounted(async () => {
   <!-- List of Receipts for Tenant Payments -->
   <main class="max-w-6xl mx-auto px-6 pt-6">
     <!-- Table -->
-    <div class="">
+    <div class="grid gap-4 sm:block">
       <!-- Header -->
       <div class="hidden sm:grid grid-cols-4 bg-gray-200 p-2 gap-2">
         <div class="text-center font-semibold">Receipt UID</div>
