@@ -95,17 +95,17 @@ const currentBalance = computed(() => {
       <!-- Amount due -->
       <div class="flex justify-between">
         <label class="font-bold mr-2">Amount due:</label>
-        <span>{{ amountDue }}</span>
+        <span>₱{{ amountDue.toFixed(2) }}</span>
       </div>
       <!-- Total payment -->
       <div class="flex justify-between">
         <label class="font-bold mr-2">Total Payment:</label>
-        <span>{{ totalPayment }}</span>
+        <span>₱{{ totalPayment.toFixed(2) }}</span>
       </div>
       <!-- Curr balance -->
       <div class="flex justify-between">
         <label class="font-bold mr-2">Current Balance:</label>
-        <span>{{ currentBalance }}</span>
+        <span>₱{{ currentBalance.toFixed(2) }}</span>
       </div>
     </div>
   </main>
