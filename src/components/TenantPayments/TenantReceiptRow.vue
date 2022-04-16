@@ -30,9 +30,7 @@ const isTicketModalVisible = ref(false);
     <div class="text-center truncate text-ellipsis">
       {{ receipt.uid }}
     </div>
-    <div class="text-center">
-      {{ receipt.amount }}
-    </div>
+    <div class="text-center">₱{{ receipt.amount.toFixed(2) }}</div>
     <div class="text-center">
       {{ receipt.stores.join(", ") }}
     </div>

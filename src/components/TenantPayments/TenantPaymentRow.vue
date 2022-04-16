@@ -35,7 +35,7 @@ onMounted(async () => {
     <div v-if="payment.description">{{ payment.description }}</div>
     <div v-else class="italic">no description</div>
     <!-- Amount -->
-    <div>{{ payment.amount }}</div>
+    <div>₱{{ payment.amount.toFixed(2) }}</div>
     <!-- Receipts -->
     <div class="grid justify-center">
       <router-link
@@ -60,6 +60,8 @@ onMounted(async () => {
       {{ payment.description }}
     </div>
     <div class="mb-3 text-2xl italic" v-else>no description</div>
+    <label class="font-bold">Amount:</label>
+    <div class="mb-3 text-2xl">₱{{ payment.amount.toFixed(2) }}</div>
     <label class="font-bold">Actions:</label>
     <div class="flex justify-center mt-3">
       <router-link
