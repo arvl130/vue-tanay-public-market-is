@@ -164,7 +164,7 @@ onMounted(async () => {
         <div>
           <div class="font-bold">Total Current Balance:</div>
           <div class="text-2xl" v-if="showCurrentBalance">
-            ₱{{ totalCurrentBalance }}
+            ₱{{ totalCurrentBalance.toFixed(2) }}
           </div>
           <div v-else>loading...</div>
         </div>
