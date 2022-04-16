@@ -90,8 +90,8 @@ const checkForChangedFiles = (e) => {
   if (
     e.target.files &&
     e.target.files.length === 1 &&
-    // Do not accept files equal or larger than 2 MiB
-    e.target.files[0].size < 2 * 1024 * 1024
+    // Do not accept files equal or larger than 2 MB
+    e.target.files[0].size < 2 * 1000 * 1000
   ) {
     filesAreChosen.value = true;
   } else {
@@ -199,7 +199,7 @@ const currentBalance = computed(() => {
       />
       <label class="text-lg">
         <span class="font-bold">Receipt Photo: </span>
-        <span class="text-sm italic mb-3">Maximum file size: 2MiB</span>
+        <span class="text-sm italic mb-3">Maximum file size: 2MB</span>
       </label>
 
       <input
