@@ -23,7 +23,7 @@ onMounted(() => {
     <div class="truncate text-ellipsis">{{ pendingPayment.uid }}</div>
     <div>{{ formatted_date }}</div>
     <div>{{ pendingPayment.stores.join(", ") }}</div>
-    <div>{{ pendingPayment.amount }}</div>
+    <div>₱{{ pendingPayment.amount.toFixed(2) }}</div>
     <div>
       <router-link
         :to="{
