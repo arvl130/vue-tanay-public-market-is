@@ -26,7 +26,9 @@ export default async (tenant_uid) => {
   if (!pendingPaymentReceiptsSnapshot.empty) {
     pendingPaymentReceiptsSnapshot.forEach((doc) => {
       const receipt = doc.data();
-      receiptAmounts.push(receipt.amount);
+      if (receipt.status === "confirmed") {
+        receiptAmounts.push(receipt.amount);
+      }
     });
   }
 
