@@ -5,17 +5,18 @@ import BackButton from "../../assets/icons/BackButton.vue";
 import TenantSecondaryButtons from "../../components/NavBar/TenantSecondaryButtons.vue";
 import FulfilledPaymentCard from "../../components/BreakdownOfFulfilledPayments/FulfilledPaymentCard.vue";
 import { onMounted, ref } from "vue";
-import getFulfilledPaymentsOfTenant from "../../composables/tenants/getFulfilledPaymentsOfTenant";
 import { getAuth } from "firebase/auth";
 import getTenant from "../../composables/getTenant";
+import getPaymentsWithReceiptsFromTenant from "../../composables/breakdown-of-payments/getPaymentsWithReceiptsFromTenant";
 
-const fulfilledPayments = ref([]);
+const fulfilledAndUnfulfilledPayments = ref([]);
 const tenantName = ref("loading ...");
 
 onMounted(async () => {
   const auth = getAuth();
   const uid = auth.currentUser.uid;
-  fulfilledPayments.value = await getFulfilledPaymentsOfTenant(uid);
+  fulfilledAndUnfulfilledPayments.value =
+    await getPaymentsWithReceiptsFromTenant(uid);
 
   const { firstName, lastName } = await getTenant(uid);
   if (firstName && lastName) tenantName.value = `${firstName} ${lastName}`;
@@ -43,9 +44,7 @@ onMounted(async () => {
   </NavBar>
 
   <PageHeader>
-    <h2 class="font-extrabold text-4xl mb-3">
-      Breakdown of Fulfilled Payments
-    </h2>
+    <h2 class="font-extrabold text-4xl mb-3">Breakdown of Payments</h2>
     <!-- Actions -->
     <div class="flex justify-between">
       <router-link :to="{ name: 'Fulfilled Payments' }" class="flex gap-2">
@@ -66,7 +65,7 @@ onMounted(async () => {
     <!-- Cards -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <FulfilledPaymentCard
-        v-for="payment in fulfilledPayments"
+        v-for="payment in fulfilledAndUnfulfilledPayments"
         :key="payment"
         :payment="payment"
       />
