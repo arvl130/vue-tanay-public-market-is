@@ -53,6 +53,7 @@ const router = useRouter();
 const receiptFile = ref();
 const onSubmit = async () => {
   if (!isSubmitButtonDisabled.value) {
+    isSubmitDone.value = true;
     const { fullPath } = await uploadReceiptImage(receiptFile.value.files[0]);
     newReceipt.image_path = fullPath;
     submitNewReceipt({ ...newReceipt });
@@ -107,6 +108,7 @@ const checkForChangedFiles = (e) => {
 };
 
 const isSubmitButtonDisabled = computed(() => {
+  if (isSubmitDone.value) return true;
   if (newReceipt.amount > maxAmountValue.value) return true;
   if (newReceipt.amount <= 0) return true;
   if (newReceipt.stores.length === 0) return true;
@@ -118,6 +120,8 @@ const isSubmitButtonDisabled = computed(() => {
 const currentBalanceFromConfirmedReceipts = computed(() => {
   return amountDue.value - totalPaymentFromConfirmedReceipts.value;
 });
+
+const isSubmitDone = ref(false);
 </script>
 
 <template>

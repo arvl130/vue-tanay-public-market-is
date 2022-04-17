@@ -73,6 +73,7 @@ const receiptFile = ref();
 const router = useRouter();
 const onSubmit = async () => {
   if (!isUpdateButtonDisabled.value) {
+    isSubmitDone.value = true;
     // If there is a selected file
     if (receiptFile.value.files && receiptFile.value.files.length > 0) {
       // delete remote file
@@ -96,6 +97,7 @@ const onSubmit = async () => {
 };
 
 const onDelete = async () => {
+  isSubmitDone.value = true;
   // If there is an image uploaded
   if (currReceipt.image_path) {
     // delete it
@@ -167,6 +169,7 @@ const onReceiptInputChanged = (e) => {
 };
 
 const isUpdateButtonDisabled = computed(() => {
+  if (isSubmitDone.value) return true;
   if (currReceipt.amount > maxAmountValue.value) return true;
   if (currReceipt.amount <= 0) return true;
   if (currReceipt.stores.length === 0) return true;
@@ -180,6 +183,8 @@ const currentBalanceFromConfirmedReceipts = computed(() => {
   if (result < 0) return 0;
   else return result;
 });
+
+const isSubmitDone = ref(false);
 </script>
 
 <template>
