@@ -43,7 +43,10 @@ onMounted(async () => {
   formattedDate.value = unixSecondsToWordDate(props.payment.due_date.seconds);
 
   // load receipts for given payment
-  receipts.value = await getReceiptsForPaymentUID(props.payment.uid);
+  const retrieved_receipts = await getReceiptsForPaymentUID(props.payment.uid);
+  retrieved_receipts.forEach((receipt) => {
+    if (receipt.status === "confirmed") receipts.value.push(receipt);
+  });
 
   // load total balance
   totalBalance.value = props.payment.amount;
