@@ -55,7 +55,7 @@ const noticeLetters = listenForNoticeLettersSentByAdmin(admin_uid);
   </PageHeader>
 
   <!-- List of Notice Letters sent by Admin -->
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <!-- Table -->
     <div class="grid gap-4 sm:block">
       <!-- Header -->

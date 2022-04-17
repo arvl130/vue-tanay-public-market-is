@@ -88,7 +88,7 @@ const chooseTab = (choice) => {
   </PageHeader>
 
   <!-- List of Tenant Payments (can filter by Fulfilled or !Fulfilled) -->
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <!-- Table -->
     <div class="grid gap-4 sm:block">
       <!-- Header -->

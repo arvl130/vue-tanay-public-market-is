@@ -104,7 +104,7 @@ const onSave = async () => {
     </div>
   </PageHeader>
 
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <div v-if="noticeLetterStore.getNoticeLetter">
       <!-- Letter -->
       <div class="mb-16 max-w-4xl mx-auto shadow-2xl">

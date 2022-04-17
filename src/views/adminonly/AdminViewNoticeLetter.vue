@@ -75,7 +75,7 @@ const onDelete = async () => {
     </div>
   </PageHeader>
 
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <!-- Letter -->
     <LetterSection :letter_uid="letter_uid" />
   </main>
