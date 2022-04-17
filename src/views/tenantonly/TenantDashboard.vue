@@ -174,7 +174,7 @@ onMounted(async () => {
 
   <!-- Dashboard buttons -->
   <main
-    class="max-w-6xl mx-auto px-6 py-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+    class="max-w-6xl mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
   >
     <!-- Payment Updates button -->
     <router-link

@@ -44,7 +44,7 @@ onMounted(async () => {
     </div>
   </PageHeader>
 
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <!-- Table for Pending Payments of a Tenant -->
     <div class="grid gap-4 sm:block">
       <!-- Header (payment_uid, due_date, store_num, amount, actions -> [view receipts]) -->

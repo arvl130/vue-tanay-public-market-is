@@ -57,7 +57,7 @@ onMounted(async () => {
   </PageHeader>
 
   <!-- Breakdown of Fulfilled Payments -->
-  <main class="max-w-6xl mx-auto px-6 pt-6">
+  <main class="max-w-6xl mx-auto p-6">
     <!-- name of tenant -->
     <div class="text-2xl mb-3" v-if="tenantName">
       <span class="font-bold text-3xl">{{ tenantName }}</span>
