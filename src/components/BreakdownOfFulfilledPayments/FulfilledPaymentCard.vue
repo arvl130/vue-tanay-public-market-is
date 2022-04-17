@@ -13,8 +13,9 @@ const receipts = ref([]);
 
 // total payment
 const totalPayment = computed(() => {
-  return receipts.value.reduce((prevAmonut, receipt) => {
-    return prevAmonut + receipt.amount;
+  return receipts.value.reduce((prevAmount, receipt) => {
+    if (receipt.status === "confirmed") return prevAmount + receipt.amount;
+    else return prevAmount;
   }, 0);
 });
 
