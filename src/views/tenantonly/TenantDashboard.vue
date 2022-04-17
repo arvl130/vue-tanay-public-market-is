@@ -6,7 +6,7 @@ import listenForNoticeLettersReceivedByTenant from "../../composables/manage-let
 import WarningIcon from "../../assets/icons/WarningIcon.vue";
 import { nextTick, onMounted, reactive, ref } from "vue";
 import getStoresByTenantUID from "../../composables/getStoresByTenantUID";
-import getTotalCurrentBalanceByTenant from "../../composables/dashboard/getTotalCurrentBalanceByTenant";
+import getTotalCurrentBalanceFromConfirmedReceiptsByTenant from "../../composables/dashboard/getTotalCurrentBalanceFromConfirmedReceiptsByTenant";
 import listenForUnverifiedPaymentsByTenant from "../../composables/dashboard/listenForUnverifiedPaymentsByTenant";
 import CashIcon from "../../assets/icons/CashIcon.vue";
 import getTenant from "../../composables/getTenant";
@@ -21,7 +21,7 @@ const pendingPayments = listenForUnverifiedPaymentsByTenant(tenant_uid);
 const stores = ref([]);
 
 // Current Balance of tenant.
-const totalCurrentBalance = ref(0);
+const totalCurrentBalanceFromConfirmedReceipts = ref(0);
 const showCurrentBalance = ref(false);
 
 onMounted(async () => {
@@ -30,7 +30,8 @@ onMounted(async () => {
     if (!stores.value.includes(store.id)) stores.value.push(store.id);
   });
 
-  totalCurrentBalance.value = await getTotalCurrentBalanceByTenant(tenant_uid);
+  totalCurrentBalanceFromConfirmedReceipts.value =
+    await getTotalCurrentBalanceFromConfirmedReceiptsByTenant(tenant_uid);
   await nextTick();
   showCurrentBalance.value = true;
 });
@@ -164,7 +165,7 @@ onMounted(async () => {
         <div>
           <div class="font-bold">Total Current Balance:</div>
           <div class="text-2xl" v-if="showCurrentBalance">
-            ₱{{ totalCurrentBalance.toFixed(2) }}
+            ₱{{ totalCurrentBalanceFromConfirmedReceipts.toFixed(2) }}
           </div>
           <div v-else>loading...</div>
         </div>
