@@ -3,7 +3,7 @@ import NavBar from "../../components/NavBar/NavBar.vue";
 import PageHeader from "../../components/PageHeader.vue";
 import BackButton from "../../assets/icons/BackButton.vue";
 import getAvailableStores from "../../composables/getAvailableStores";
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, nextTick, onMounted, reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import getTenant from "../../composables/api/getTenant";
 import getTenantStores from "../../composables/getStoresByTenantUID";
@@ -27,6 +27,7 @@ const currTenant = reactive({
 
 const choosableStores = ref([]);
 
+const showForm = ref(false);
 onMounted(async () => {
   const availableStores = await getAvailableStores();
   const tenantStores = await getTenantStores(tenant_uid);
@@ -43,6 +44,9 @@ onMounted(async () => {
   tenantStores.map((store) => {
     currTenant.stores.push(store.id);
   });
+
+  await nextTick();
+  showForm.value = true;
 });
 const router = useRouter();
 
@@ -137,6 +141,7 @@ const isErrorModalVisible = ref(false);
       </router-link>
 
       <router-link
+        v-if="showForm"
         :to="{ name: 'Change Tenant Password', params: { id: tenant_uid } }"
         class="flex gap-2 bg-gray-200 px-4 py-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
       >
@@ -149,7 +154,7 @@ const isErrorModalVisible = ref(false);
 
   <main class="max-w-6xl mx-auto p-6">
     <!-- form -->
-    <form class="grid">
+    <form class="grid" v-if="showForm">
       <label class="font-bold text-lg">First name</label>
       <input
         v-model="currTenant.firstName"
@@ -214,6 +219,10 @@ const isErrorModalVisible = ref(false);
         </button>
       </div>
     </form>
+    <div v-else>
+      <div class="font-bold text-4xl text-center mt-16">Loading data...</div>
+      <div class="text-2xl text-center">Please wait</div>
+    </div>
 
     <SimpleDialogModal v-if="isDeleteModalVisible">
       <template #header>Confirm Delete Tenant</template>
