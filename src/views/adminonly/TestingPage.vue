@@ -27,8 +27,8 @@ const onTriggerSinglePayment = async () => {
 const isIssuePaymentOnAllTenantsDisabled = ref(false);
 const onTriggerAllPayments = async () => {
   if (!isIssuePaymentOnAllTenantsDisabled.value) {
-    await triggerManualRolloutOfPayments();
     isIssuePaymentOnAllTenantsDisabled.value = true;
+    await triggerManualRolloutOfPayments();
   }
 };
 </script>
