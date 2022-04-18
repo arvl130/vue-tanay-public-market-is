@@ -54,12 +54,21 @@ const grandTotalArrears = computed(() => {
 
 const router = useRouter();
 const onSave = async () => {
-  await createNewLetter({
-    ...noticeLetterStore.getNoticeLetter,
-    arrears: arrears.value,
-  });
-  router.push({ name: "Admin Notice Letters" });
+  if (!isSaveButtonDisabled.value) {
+    isSaved.value = true;
+    await createNewLetter({
+      ...noticeLetterStore.getNoticeLetter,
+      arrears: arrears.value,
+    });
+    router.push({ name: "Admin Notice Letters" });
+  }
 };
+
+const isSaved = ref(false);
+const isSaveButtonDisabled = computed(() => {
+  if (isSaved.value) return true;
+  return false;
+});
 </script>
 
 <template>
@@ -94,6 +103,11 @@ const onSave = async () => {
       <button
         type="button"
         class="flex gap-2 bg-gray-200 p-2 shadow hover:shadow-md hover:bg-gray-300 rounded transition duration-200"
+        :class="{
+          'bg-slate-300': isSaveButtonDisabled,
+          'text-slate-500': isSaveButtonDisabled,
+          'pointer-events-none': isSaveButtonDisabled,
+        }"
         v-if="noticeLetterStore.getNoticeLetter"
         @click="onSave()"
       >
