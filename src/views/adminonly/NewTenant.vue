@@ -29,6 +29,7 @@ const router = useRouter();
 const onCreateTenant = async () => {
   try {
     if (!isCreateButtonDisabled.value) {
+      isCreateButtonClicked.value = true;
       await createTenant({ ...newTenant });
       router.push({ name: "Manage Tenants" });
     }
@@ -37,6 +38,7 @@ const onCreateTenant = async () => {
       isErrorModalVisible.value = true;
       errorMessage.header = "Username is already in use";
       errorMessage.body = "Please enter a different username.";
+      isCreateButtonClicked.value = false;
     } else {
       console.log(e);
     }
@@ -51,17 +53,17 @@ const errorMessage = reactive({
 const isErrorModalVisible = ref(false);
 
 const isCreateButtonDisabled = computed(() => {
-  if (
-    newTenant.firstName === "" ||
-    newTenant.lastName === "" ||
-    newTenant.account_type === "" ||
-    newTenant.username === "" ||
-    newTenant.password === "" ||
-    newTenant.password.length < 8
-  )
-    return true;
+  if (isCreateButtonClicked.value) return true;
+  if (newTenant.firstName === "") return true;
+  if (newTenant.lastName === "") return true;
+  if (newTenant.account_type === "") return true;
+  if (newTenant.username === "") return true;
+  if (newTenant.password === "") return true;
+  if (newTenant.password.length < 8) return true;
   else return false;
 });
+
+const isCreateButtonClicked = ref(false);
 </script>
 <template>
   <!-- <div class="py-32 text-center">
