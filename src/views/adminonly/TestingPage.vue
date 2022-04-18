@@ -8,6 +8,7 @@ import listenForTenantsUsers from "../../composables/api/listenForTenantUsers";
 import { computed, ref } from "vue";
 import triggerManualRolloutOfPaymentsSingle from "../../composables/api/triggerManualRolloutOfPaymentsSingle";
 import triggerManualRolloutOfPayments from "../../composables/api/triggerManualRolloutOfPayments";
+import { useRouter } from "vue-router";
 
 const tenants = listenForTenantsUsers();
 
@@ -20,15 +21,19 @@ const isIssuePaymentButtonIsDisabled = computed(() => {
 
 const onTriggerSinglePayment = async () => {
   if (!isIssuePaymentButtonIsDisabled.value) {
-    triggerManualRolloutOfPaymentsSingle(tenantChosen.value);
+    const tenant_chosen = tenantChosen.value;
+    tenantChosen.value = "";
+    triggerManualRolloutOfPaymentsSingle(tenant_chosen);
   }
 };
 
+const router = useRouter();
 const isIssuePaymentOnAllTenantsDisabled = ref(false);
 const onTriggerAllPayments = async () => {
   if (!isIssuePaymentOnAllTenantsDisabled.value) {
     isIssuePaymentOnAllTenantsDisabled.value = true;
     await triggerManualRolloutOfPayments();
+    router.push({ name: "Admin Dashboard" });
   }
 };
 </script>
