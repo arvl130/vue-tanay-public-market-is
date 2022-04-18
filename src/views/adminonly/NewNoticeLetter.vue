@@ -35,6 +35,7 @@ const router = useRouter();
 const noticeLetterStore = useNoticeLetter();
 const onSubmit = async () => {
   if (!isGenerateButtonDisabled.value) {
+    isGenerateButtonClicked.value = true;
     if (newLetter.tenant_uid) {
       const stores = await getStoresFromTenantUnfulfilledPayments(
         newLetter.tenant_uid
@@ -50,18 +51,16 @@ const onSubmit = async () => {
 };
 
 const isGenerateButtonDisabled = computed(() => {
-  if (
-    newLetter.tenant_uid === "" ||
-    newLetter.admin_uid === "" ||
-    !newLetter.timestamp ||
-    newLetter.penalty === "" ||
-    parseFloat(newLetter.penalty) < 0
-  ) {
-    return true;
-  } else {
-    return false;
-  }
+  if (isGenerateButtonClicked.value) return true;
+  if (newLetter.tenant_uid === "") return true;
+  if (newLetter.admin_uid === "") return true;
+  if (!newLetter.timestamp) return true;
+  if (newLetter.penalty === "") return true;
+  if (parseFloat(newLetter.penalty) < 0) return true;
+  return false;
 });
+
+const isGenerateButtonClicked = ref(false);
 
 // const onOptionSelected = (selectedValue) => {
 //   newLetter.stores = [...selectedValue];
