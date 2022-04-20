@@ -5,6 +5,7 @@ import getAdmin from "../composables/getAdmin";
 import getReceipt from "../composables/getReceipt";
 import getTenant from "../composables/getTenant";
 import getTicket from "../composables/getTicket";
+import currencyToWords from "../composables/utils/currencyToWords";
 import unixSecondsToWordDate from "../composables/utils/unixSecondsToWordDate";
 
 const route = useRoute();
@@ -31,6 +32,7 @@ const admin = reactive({
 });
 
 const storesPaid = ref([]);
+const amountInWords = ref("");
 
 const ticketShouldShow = ref(false);
 
@@ -50,6 +52,17 @@ onMounted(async () => {
   ticket.payment_uid = payment_uid;
   ticket.tenant_uid = tenant_uid;
   ticket.admin_uid = admin_uid;
+
+  let currency = {
+    country: "Philippine", // country Name
+    majorSingle: "Peso", // Major Unit Single
+    majorPlural: "Pesos", // Major Unit Plural
+    minorSingle: "Centavo", // Minor Sub-Unit Single
+    minorPlural: "Centavos", // Minor Sub-Unit Plural
+    fraction: 2, // Decimal Places
+  };
+
+  if (amount) amountInWords.value = currencyToWords(amount, currency);
 
   if (ticket.date_issued) {
     dateIssued.value = unixSecondsToWordDate(ticket.date_issued.seconds);
@@ -82,16 +95,22 @@ onMounted(async () => {
 
 <template>
   <!-- Receipt -->
-  <main class="max-w-md mx-auto" v-if="ticketShouldShow">
+  <main
+    class="max-w-2xl mx-auto border-2 border-black mb-12"
+    v-if="ticketShouldShow"
+    style="font-family: Helvetica, sans-serif"
+  >
     <!-- Header -->
-    <div class="flex justify-between px-6 mb-2 h-24 items-center">
+    <div
+      class="flex justify-between border-b-2 border-black px-12 items-center"
+    >
       <img
         src="../assets/img/coat-of-arms.png"
         alt=""
         class="object-contain h-20 w-20"
       />
-      <div class="grid content-center text-center">
-        <div class="text-xl tracking-wide font-bold">OFFICIAL RECEIPT</div>
+      <div class="grid content-center text-center text-xl leading-9">
+        <div>OFFICIAL RECEIPT</div>
         <div>Republic of the Philippines</div>
         <div>Province of Rizal</div>
       </div>
@@ -102,101 +121,138 @@ onMounted(async () => {
       />
     </div>
 
-    <!-- Body -->
-    <div>
-      <!-- Top -->
-      <div class="grid grid-cols-2 mb-2">
-        <!-- Date -->
-        <div>
-          <div class="text-xs tracking-wide uppercase">Date Issued:</div>
-          <div>{{ dateIssued }}</div>
-        </div>
-        <!-- UID -->
-        <div>
-          <div class="text-xs tracking-wide uppercase">UID:</div>
-          <div>{{ ticket_uid }}</div>
-        </div>
+    <!-- Layer 1 -->
+    <div class="grid grid-cols-2 px-2 border-b-2 border-black">
+      <div class="border-r-2 border-black">
+        <p class="pt-2 pb-4">Accountable Form No. __</p>
+        <p class="leading-4">Revived January 1992</p>
       </div>
-      <div class="grid grid-cols-2 mb-2">
-        <!-- Date -->
-        <div>
-          <div class="text-xs tracking-wide uppercase">Payor:</div>
-          <div>{{ `${tenant.firstName} ${tenant.lastName}` }}</div>
-        </div>
-        <!-- UID -->
-        <div class="overflow-hidden">
-          <div class="text-xs tracking-wide uppercase">Tenant ID:</div>
-          <div class="text-sm">
-            {{ ticket.tenant_uid }}
-          </div>
-        </div>
-      </div>
+      <div class="pt-1 font-bold text-xl text-center">ORIGINAL</div>
+    </div>
 
-      <!-- Body -->
-      <div
-        class="grid border-2 border-black"
-        style="grid-template-columns: 5fr 3fr"
-      >
-        <div class="text-center font-bold border-b-2 border-black">Stores</div>
-        <div
-          class="text-center font-bold border-b-2 border-black border-l-2 border-black"
+    <div class="grid grid-cols-2 border-b-2 border-black">
+      <div class="border-r-2 border-black px-2 pt-4 pb-1">
+        DATE <span class="font-bold text-xl">{{ dateIssued }}</span>
+      </div>
+      <div class="pl-2 pt-3">
+        <span class="font-bold text-xl">No. RZL </span>
+        <span class="border-b-2 border-black"
+          >&nbsp;&nbsp;{{ ticket_uid }}&nbsp;&nbsp;</span
         >
-          Amount
-        </div>
+      </div>
+    </div>
 
-        <!-- column for Stores -->
-        <div>
-          <div
-            class="text-center"
-            v-for="(store, index) in storesPaid"
-            :key="store"
-          >
-            <div
-              class="border-b-2 border-black pr-2"
-              v-if="index !== storesPaid.length - 1"
-            >
-              Store #{{ store }}
-            </div>
-            <div class="pr-2" v-else>Store #{{ store }}</div>
-          </div>
+    <div
+      class="grid grid-cols-[3fr_1fr] auto-rows-[7rem] border-b-2 border-black"
+    >
+      <div class="border-r-2 border-black pl-3 pt-1 text-xl">
+        <div>PAYOR</div>
+        <div class="text-4xl font-bold">
+          {{ `${tenant.firstName} ${tenant.lastName}` }}
         </div>
-        <!-- column for Amount -->
-        <div class="border-l-2 border-black">
-          <div v-for="(store, index) in storesPaid" :key="store">
-            <div class="pl-2" v-if="index === storesPaid.length - 1">
-              ₱{{ ticket.amount.toFixed(2) }}
-            </div>
-            <div class="border-b-2 border-black" v-else>
-              <br />
-            </div>
-          </div>
+      </div>
+      <div class="pl-5 pt-1 text-xl">FUND</div>
+    </div>
+
+    <div
+      class="grid grid-cols-[2fr_1fr_1fr] border-b-2 border-black text-center"
+    >
+      <div class="border-r-2 border-black pt-1 text-xl">
+        Nature of Collection
+      </div>
+      <div class="border-r-2 border-black pt-1 text-md">ACCOUNT<br />CODE</div>
+      <div class="pt-1 text-md">AMOUNT</div>
+    </div>
+
+    <div class="grid grid-cols-[2fr_1fr_1fr]">
+      <!-- Nature of Collection column -->
+      <div class="border-r-2 border-black">
+        <div class="border-b-2 px-1 py-1 border-black text-right font-bold">
+          Payment for Store #{{ storesPaid.join(", #") }}
+        </div>
+        <div
+          class="border-b-2 px-1 py-1 border-black text-right"
+          v-for="row in Array(5)"
+          :key="row"
+        >
+          <br />
+        </div>
+      </div>
+      <!-- Amount Code column -->
+      <div class="border-r-2 border-black text-md">
+        <div
+          class="border-b-2 px-1 py-1 border-black text-right"
+          v-for="row in Array(6)"
+          :key="row"
+        >
+          <br />
+        </div>
+      </div>
+      <!-- Amount column -->
+      <div>
+        <div class="border-b-2 border-black pl-5 pr-1 py-1 font-bold">
+          ₱ {{ ticket.amount.toFixed(2) }}
+        </div>
+        <div
+          class="border-b-2 pl-5 pr-1 py-1 border-black text-right"
+          v-for="row in Array(4)"
+          :key="row"
+        >
+          <br />
+        </div>
+        <div class="border-b-2 border-black pl-5 pr-1 py-1 font-bold">
+          ₱ {{ ticket.amount.toFixed(2) }}
         </div>
       </div>
     </div>
-    <div
-      class="grid border-x-2 border-b-2 border-black mb-4"
-      style="grid-template-columns: 5fr 3fr"
-    >
-      <div class="mr-2 text-right">Total:</div>
-      <div class="border-l-2 border-black pl-2">
-        ₱{{ ticket.amount.toFixed(2) }}
+
+    <div class="border-b-2 border-black">
+      <p class="text pl-2 pt-2 pb-3">AMOUNT IN WORDS</p>
+    </div>
+
+    <div class="border-b-2 border-black">
+      <p class="pl-2 pt-2 pb-2 font-bold text-xl">
+        {{ amountInWords }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-[2fr_1fr_1fr_1fr]">
+      <div class="border-b-2 border-black">
+        <ul class="list-disc pl-12 pt-1 leading-5">
+          <li>CASH</li>
+          <li>CHECK</li>
+          <li>MONEY ORDER</li>
+        </ul>
+      </div>
+      <div class="border-l-2 border-black text-center">
+        <div class="border-b-2 border-black py-1">Drawer Bank</div>
+        <div class="border-b-2 border-black py-1"><br /></div>
+        <div class="border-b-2 border-black py-1"><br /></div>
+      </div>
+      <div class="border-l-2 border-black text-center">
+        <div class="border-b-2 border-black py-1">Number</div>
+        <div class="border-b-2 border-black py-1"><br /></div>
+        <div class="border-b-2 border-black py-1"><br /></div>
+      </div>
+      <div class="border-l-2 border-black text-center">
+        <div class="border-b-2 border-black py-1">Date</div>
+        <div class="border-b-2 border-black py-1"><br /></div>
+        <div class="border-b-2 border-black py-1"><br /></div>
       </div>
     </div>
 
     <!-- Bottom -->
     <div class="grid grid-cols-2 mb-2" style="grid-template-columns: 5fr 3fr">
+      <!-- Collecting Officer -->
+      <div class="pl-3 pt-1">Received the amount stated above</div>
       <!-- Signature -->
       <div>
-        <div class="px-12">
+        <div class="px-3 text-center pt-12 font-bold">
+          {{ `${admin.firstName} ${admin.lastName}` }}
           <br />
           <div class="border-b-2 border-black"></div>
         </div>
-        <div class="text-xs text-center tracking-wide uppercase">Signature</div>
-      </div>
-      <!-- Collecting Officer -->
-      <div class="text-center">
-        <div>{{ `${admin.firstName} ${admin.lastName}` }}</div>
-        <div class="text-xs tracking-wide uppercase">Collecting Officer</div>
+        <div class="text-sm text-center tracking-wide">Collecting Officer</div>
       </div>
     </div>
   </main>
