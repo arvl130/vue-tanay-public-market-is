@@ -1,10 +1,11 @@
 import getToken from "../auth/getToken";
+import backendBaseURL from "./backendBaseURL";
 
 export default async (tenant_uid) => {
   try {
     const idToken = await getToken();
     const response = await fetch(
-      `https://node-tanay-public-market-is.herokuapp.com/users/tenants/${tenant_uid}`,
+      `${backendBaseURL}/users/tenants/${tenant_uid}`,
       {
         headers: {
           Authorization: `Bearer ${idToken}`,

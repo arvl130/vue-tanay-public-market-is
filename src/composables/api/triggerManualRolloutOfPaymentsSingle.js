@@ -1,9 +1,10 @@
 import getToken from "../auth/getToken";
+import backendBaseURL from "./backendBaseURL";
 
 export default async (tenant_uid) => {
   const idToken = await getToken();
   const response = await fetch(
-    `https://node-tanay-public-market-is.herokuapp.com/settings/firstrun/create-payments/${tenant_uid}`,
+    `${backendBaseURL}/settings/firstrun/create-payments/${tenant_uid}`,
     {
       method: "POST",
       headers: {

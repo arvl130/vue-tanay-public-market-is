@@ -1,11 +1,12 @@
 import getToken from "../auth/getToken";
+import backendBaseURL from "./backendBaseURL";
 
 export default async (uid, newPassword) => {
   if (!newPassword || !uid) throw new Error("Invalid arguments");
 
   const idToken = await getToken();
   const response = await fetch(
-    `https://node-tanay-public-market-is.herokuapp.com/users/tenants/${uid}/pwreset`,
+    `${backendBaseURL}/users/tenants/${uid}/pwreset`,
     {
       method: "PATCH",
       headers: {
